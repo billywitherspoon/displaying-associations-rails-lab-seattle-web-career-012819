@@ -1,8 +1,12 @@
 class SongsController < ApplicationController
+  # before_validation :make_title_case 
+  # validate :is_title_case 
   def index
+    @songs = Song.all
   end
-
+  
   def show
+    @song = Song.find(params[:id])
   end
 
   def new
@@ -46,5 +50,22 @@ class SongsController < ApplicationController
   def song_params
     params.require(:song).permit(:title)
   end
+
+  # def is_title_case
+  #   if title.split.any?{|w|w[0].upcase != w[0]}
+  #     errors.add(:title, "Title must be in title case")
+  #   end
+  # end
+
+  # def make_title_case
+  #   self.title = self.title.titlecase
+  # end
 end
+
+
+ 
+
+  
+ 
+ 
 
